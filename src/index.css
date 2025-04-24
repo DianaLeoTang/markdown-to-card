@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 应用UI固定样式变量 */
+  --app-primary: #1677ff;      /* 明亮的蓝色主题色 */
+  --app-background: #f0f7ff;   /* 淡蓝色调背景 */
+  --app-text: #15233b;         /* 深蓝黑色文本 */
+  --app-accent: #0ecf7c;       /* 清爽的绿色强调色 */
+  
+  /* 默认卡片样式变量 */
+  --card-background: #ffffff;
+  --card-primary-color: #1677ff;
+  --card-text-color: #15233b;
+  --card-accent-color: #0ecf7c;
+  --card-font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --card-border-radius: 12px;
+  --card-box-shadow: 0 12px 20px rgba(22, 119, 255, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+@layer components {
+  .app-container {
+    @apply flex flex-col h-screen mx-auto max-w-7xl;
+  }
+
+  .app-header {
+    @apply flex items-center justify-between p-4 border-b border-gray-200;
+    background-color: var(--app-background);
+    color: var(--app-text);
+  }
+
+  .app-header h1 {
+    color: var(--app-primary);
+  }
+
+  .theme-controls {
+    @apply flex gap-2;
+  }
+
+  .theme-controls button {
+    @apply px-4 py-2 text-white transition-opacity rounded hover:opacity-90;
+    background-color: var(--app-primary);
+  }
+
+  .export-button {
+    @apply px-4 py-2 text-white transition-opacity rounded hover:opacity-90;
+    background-color: var(--app-accent);
+  }
+
+  .app-main {
+    @apply flex flex-1 overflow-hidden;
+  }
+
+  .editor-panel {
+    @apply flex-1 p-4 overflow-auto border-r border-gray-200;
+  }
+
+  .preview-panel {
+    @apply flex items-center justify-center flex-1 p-4 overflow-auto bg-gray-100;
+  }
+
+  .card-container {
+    @apply w-full max-w-2xl overflow-hidden transition-all duration-300;
+    background: var(--card-background);
+    color: var(--card-text-color);
+    font-family: var(--card-font-family);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+  }
+
+  /* Theme-specific styles */
+  [data-theme="instagram"] #card-preview,
+  .theme-instagram {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  }
+
+  /* Instagram主题的特殊样式 */
+  [data-theme="instagram"] .card-tag,
+  .theme-instagram .card-tag {
+    @apply bg-white text-[#833ab4] font-bold;
+    text-shadow: none;
+  }
+
+  [data-theme="instagram"] .card-link,
+  .theme-instagram .card-link {
+    @apply text-white border-white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="instagram"] .card-title,
+  .theme-instagram .card-title,
+  [data-theme="instagram"] .heading-2,
+  .theme-instagram .heading-2,
+  [data-theme="instagram"] .heading-3,
+  .theme-instagram .heading-3 {
+    @apply text-white border-white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="instagram"] .card-content,
+  .theme-instagram .card-content {
+    @apply text-white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="twitter"] #card-preview,
+  .theme-twitter {
+    background: var(--card-background);
+  }
+
+  [data-theme="pinterest"] #card-preview,
+  .theme-pinterest {
+    background: var(--card-background);
+  }
+
+  [data-theme="dark"] #card-preview,
+  .theme-dark {
+    background: var(--card-background);
+  }
+
+  .card-content {
+    @apply p-8;
+    color: var(--text-color);
+  }
+
+  .card-title {
+    @apply pl-4 mt-0 mb-6 text-4xl leading-tight border-l-4;
+    color: var(--card-primary-color);
+    border-color: var(--card-accent-color);
+  }
+
+  .heading-2 {
+    @apply mt-6 mb-4 text-2xl font-bold;
+    color: var(--card-primary-color);
+  }
+
+  .heading-3 {
+    @apply mt-5 mb-3 text-xl font-semibold;
+    color: var(--card-primary-color);
+  }
+
+  .card-paragraph {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .card-image {
+    @apply max-w-full my-4 rounded-lg;
+  }
+
+  .card-link {
+    @apply no-underline transition-opacity duration-200 hover:opacity-80;
+    color: var(--card-primary-color);
+    border-bottom: 1px solid var(--card-primary-color);
+  }
+
+  .card-tag {
+    @apply inline-flex items-center justify-center px-3 py-1 mt-4 mb-2 mr-2 text-sm font-medium rounded-full;
+    background-color: var(--card-primary-color);
+    color: white;
+    line-height: 1;
+    height: 28px;
+  }
+
+  /* List styles */
+  .card-ordered-list {
+    @apply pl-6 mb-4 space-y-2 list-decimal;
+    counter-reset: item;
+  }
+
+  .card-unordered-list {
+    @apply pl-6 mb-4 space-y-2 list-disc;
+  }
+
+  .card-list-item {
+    @apply pl-1 mb-1;
+  }
+
+  .card-callout {
+    @apply p-4 my-6 mt-8 border-l-4 rounded-lg bg-opacity-10;
+  }
+
+  .card-callout-tip {
+    @apply bg-green-100 border-green-500;
+  }
+
+  .card-callout-info {
+    @apply bg-blue-100 border-blue-500;
+  }
+
+  .card-callout-warning {
+    @apply bg-orange-100 border-orange-500;
+  }
+
+  .card-code-block {
+    @apply p-4 my-4 overflow-x-auto font-mono text-sm rounded-lg bg-gray-50;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-main {
+    @apply flex-col;
+  }
+
+  .editor-panel,
+  .preview-panel {
+    @apply flex-none h-1/2;
+  }
+
+  .editor-panel {
+    @apply border-b border-r-0 border-gray-200;
+  }
+}
